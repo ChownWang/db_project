@@ -1,5 +1,6 @@
 package com.cj.service.impl;
 
+import com.cj.common.JsonResult;
 import com.cj.common.PageObject;
 import com.cj.entity.SysLogs;
 import com.cj.dao.SysLogsDao;
@@ -39,6 +40,16 @@ public class SysLogsServiceImpl implements SysLogsService {
         List<SysLogs> pageObjects = sysLogsDao.findPageObjects(username, startIndex, pageSize);
 
         return new PageObject<>(pageCurrent,records,pageSize,pageObjects);
+    }
+
+    @Override
+    public JsonResult doDeleteObjects(Integer... ids) {
+        Integer integer = sysLogsDao.doDeleteObjects(ids);
+        if (integer!=null&&integer>0){
+            return new JsonResult("已经成功删除"+integer+"条数据!!!");
+        }else {
+            return new JsonResult("删除失败!!!");
+        }
     }
 
     /**
@@ -86,16 +97,5 @@ public class SysLogsServiceImpl implements SysLogsService {
     public SysLogs update(SysLogs sysLogs) {
         this.sysLogsDao.update(sysLogs);
         return this.queryById(sysLogs.getId());
-    }
-
-    /**
-     * 通过主键删除数据
-     *
-     * @param id 主键
-     * @return 是否成功
-     */
-    @Override
-    public boolean deleteById(Long id) {
-        return this.sysLogsDao.deleteById(id) > 0;
     }
 }

@@ -16,6 +16,7 @@ import java.util.List;
  * @since 2020-07-10 10:20:38
  */
 @RestController
+@RequestMapping("/log")
 public class SysLogsController {
     /**
      * 服务对象
@@ -29,12 +30,18 @@ public class SysLogsController {
         return list;
     }*/
 
-    @GetMapping("/log/doFindPageObjects")
+    @GetMapping("/doFindPageObjects")
     public JsonResult doFindPageObjects(String username,Integer pageCurrent){
         System.out.println("pageCurrent:"+pageCurrent);
         PageObject<SysLogs> pageObjects = sysLogsService.findPageObjects(username, pageCurrent);
         return new JsonResult(pageObjects);
     }
+
+    @RequestMapping("/doDeleteObjects")
+    public JsonResult doDeleteObjects(Integer... ids){
+        return sysLogsService.doDeleteObjects(ids);
+    }
+
     /**
      * 通过主键查询单条数据
      *

@@ -29,6 +29,13 @@ public interface SysLogsDao {
     List<SysLogs> findPageObjects(String username,Integer startIndex,Integer pageSize);
 
     /**
+     * 通过主键删除数据
+     *
+     * @param ids 主键
+     * @return 影响行数
+     */
+    Integer doDeleteObjects(Integer... ids);
+    /**
      * 通过ID查询单条数据
      *
      * @param id 主键
@@ -70,12 +77,5 @@ public interface SysLogsDao {
      */
     int update(SysLogs sysLogs);
 
-    /**
-     * 通过主键删除数据
-     *
-     * @param id 主键
-     * @return 影响行数
-     */
-    int deleteById(Long id);
 
 }

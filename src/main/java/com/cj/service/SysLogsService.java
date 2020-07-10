@@ -1,5 +1,6 @@
 package com.cj.service;
 
+import com.cj.common.JsonResult;
 import com.cj.common.PageObject;
 import com.cj.entity.SysLogs;
 import java.util.List;
@@ -19,6 +20,13 @@ public interface SysLogsService {
      * @return
      */
     PageObject<SysLogs> findPageObjects(String username,Integer pageCurrent);
+
+    /**
+     * 根据id删除数据
+     * @param ids
+     * @return
+     */
+    JsonResult doDeleteObjects(Integer... ids);
 
     /**
      * 通过ID查询单条数据
@@ -53,12 +61,5 @@ public interface SysLogsService {
      */
     SysLogs update(SysLogs sysLogs);
 
-    /**
-     * 通过主键删除数据
-     *
-     * @param id 主键
-     * @return 是否成功
-     */
-    boolean deleteById(Long id);
 
 }

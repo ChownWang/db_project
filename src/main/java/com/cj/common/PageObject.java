@@ -2,7 +2,7 @@ package com.cj.common;
 
 /**
  * @ClassName PageObject
- * @Description TODO
+ * @Description 封装分页信息的一个对象
  * @Author ChownWang
  * @Date 2020/7/10 11:17
  * @Version 1.0
