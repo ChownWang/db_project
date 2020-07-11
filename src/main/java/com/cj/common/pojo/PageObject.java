@@ -1,4 +1,4 @@
-package com.cj.common;
+package com.cj.common.pojo;
 
 /**
  * @ClassName PageObject

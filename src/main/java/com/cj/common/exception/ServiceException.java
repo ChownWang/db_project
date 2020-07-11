@@ -1,4 +1,4 @@
-package com.cj.exception;
+package com.cj.common.exception;
 
 import java.io.Serializable;
 

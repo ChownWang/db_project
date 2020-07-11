@@ -1,6 +1,5 @@
 package com.cj.dao;
 
-import com.cj.common.PageObject;
 import com.cj.entity.SysLogs;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;

@@ -1,13 +1,12 @@
 package com.cj.controller;
 
-import com.cj.common.JsonResult;
-import com.cj.common.PageObject;
+import com.cj.common.pojo.JsonResult;
+import com.cj.common.pojo.PageObject;
 import com.cj.entity.SysLogs;
 import com.cj.service.SysLogsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 系统日志(SysLogs)表控制层

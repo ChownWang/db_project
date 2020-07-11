@@ -1,7 +1,7 @@
 package com.cj.service;
 
-import com.cj.common.JsonResult;
-import com.cj.common.PageObject;
+import com.cj.common.pojo.JsonResult;
+import com.cj.common.pojo.PageObject;
 import com.cj.entity.SysLogs;
 import java.util.List;
 

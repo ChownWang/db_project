@@ -1,10 +1,10 @@
 package com.cj.service.impl;
 
-import com.cj.common.JsonResult;
-import com.cj.common.PageObject;
+import com.cj.common.pojo.JsonResult;
+import com.cj.common.pojo.PageObject;
 import com.cj.entity.SysLogs;
 import com.cj.dao.SysLogsDao;
-import com.cj.exception.ServiceException;
+import com.cj.common.exception.ServiceException;
 import com.cj.service.SysLogsService;
 import org.springframework.stereotype.Service;
 
