@@ -4,6 +4,7 @@ import com.cj.common.JsonResult;
 import com.cj.common.PageObject;
 import com.cj.entity.SysLogs;
 import com.cj.dao.SysLogsDao;
+import com.cj.exception.ServiceException;
 import com.cj.service.SysLogsService;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class SysLogsServiceImpl implements SysLogsService {
         //2.查询总记录数
         Integer records = sysLogsDao.getRowCount(username);
         if (records == 0){
-
+            throw  new ServiceException("请输入正确的用户名!");
         }
         //3.每页需要显示的条数
         Integer pageSize = 3 ;
