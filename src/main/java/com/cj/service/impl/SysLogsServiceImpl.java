@@ -45,11 +45,22 @@ public class SysLogsServiceImpl implements SysLogsService {
 
     @Override
     public JsonResult doDeleteObjects(Integer... ids) {
-        Integer integer = sysLogsDao.doDeleteObjects(ids);
+        //判断参数是否为空，为空就抛出异常并显示给用户提示信息
+        if(ids==null || ids.length==0){
+            throw new IllegalArgumentException("请选择至少一条数据");
+        }
+        // 定义删除成功影响行数变量
+        Integer integer = null;
+        try {
+            integer = sysLogsDao.doDeleteObjects(ids);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServiceException("系统故障，请稍后再试.");
+        }
         if (integer!=null&&integer>0){
             return new JsonResult("已经成功删除"+integer+"条数据!!!");
         }else {
-            return new JsonResult("删除失败!!!");
+            throw new ServiceException("删除失败,记录可能已经不存在");
         }
     }
 
