@@ -19,8 +19,12 @@ public class StartController {
         return "starter";
     }
     @RequestMapping("log/log_list")
-    public String doLogUI() {
+    public String doLogUI_logList() {
         return "sys/log_list";
+    }
+    @RequestMapping("menu/menu_list")
+    public String doLoadUI_menuList(){
+        return "sys/menu_list";
     }
 
     @RequestMapping("doPageUI")

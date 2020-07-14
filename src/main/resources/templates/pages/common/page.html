@@ -17,6 +17,9 @@ $(function(){
 //基于分页按钮事件，执行新的页码记录查询
 function doJumpToPage(){
 	//1.获取点击对象的class属性值(pre,first,next,last)
+	//2.prop为jquery中的一个获取属性值的函数，其语法为prop(key[,value]);
+	//3.假如只有key则代表取值
+	//4.假如有propertyName和propertyValue则表示为属性赋值。
 	var cls=$(this).prop("class");
 	console.log("class",cls);
 	//2.基于点击对象的不同修改当前页码值
@@ -49,8 +52,8 @@ function doSetPagination(pageObject){
 	//初始化当前页
 	$(".pageCurrent").html("当前页("+pageObject.pageCurrent+")");
 	//存储当前页码值和总页数
-	//data函数为jquery中的一个数据绑定函数，可以将一些key/value对存储到指定的对象上
-	//data函数语法data(key[,value]);
+	//data函数为jquery中的一个数据绑定函数，每一个对象都有这个函数，可以将一些key/value对存储到指定的对象上
+	//data函数语法data(key[,value]);key和value由自己指定，而prop必须是这个对象中的属性值
 	$("#pageId").data("pageCurrent",pageObject.pageCurrent);
 	$("#pageId").data("pageCount",pageObject.pageCount);
 }
