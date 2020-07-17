@@ -1,6 +1,7 @@
 package com.cj.test;
 
 import com.cj.dao.SysLogsDao;
+import com.cj.dao.SysMenusDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -19,10 +20,17 @@ public class SysLogTest {
     @Resource
     private SysLogsDao sysLogsDao;
 
+    @Resource
+    private SysMenusDao sysMenusDao;
+
     @Test
     void logTest(){
         Integer integer = sysLogsDao.doDeleteObjects(11,12,13);
         System.out.println(integer);
+    }
+    @Test
+    void menuTest(){
+
     }
 
 }

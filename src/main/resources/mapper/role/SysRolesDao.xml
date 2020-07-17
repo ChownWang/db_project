@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cj.dao.SysRolesDao">
+
+    <resultMap type="com.cj.entity.SysRoles" id="SysRolesMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+        <result property="createdTime" column="createdTime" jdbcType="TIMESTAMP"/>
+        <result property="modifiedTime" column="modifiedTime" jdbcType="TIMESTAMP"/>
+        <result property="createdUser" column="createdUser" jdbcType="VARCHAR"/>
+        <result property="modifiedUser" column="modifiedUser" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="queryWhereId">
+        <where>
+            <if test="name!=null and name!=''">
+                name like concat("%",#{name},"%")
+            </if>
+        </where>
+    </sql>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SysRolesMap">
+        select
+          id, name, note, createdTime, modifiedTime, createdUser, modifiedUser
+        from dbsys.sys_roles
+        where id = #{id}
+    </select>
+    <select id="getRowCount" resultType="java.lang.Integer">
+            select count(*)
+            from sys_roles
+            <include refid="queryWhereId"/>
+    </select>
+    <select id="findPageObjects" resultType="com.cj.entity.SysRoles">
+        select *
+        from sys_roles
+        <include refid="queryWhereId"/>
+        order by createdTime desc
+        limit #{startIndex},#{pageSize}
+    </select>
+
+</mapper>

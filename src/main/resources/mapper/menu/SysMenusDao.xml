@@ -18,11 +18,11 @@
     </resultMap>
 
     <!--查询单个-->
-    <select id="queryById" resultMap="SysMenusMap">
+    <select id="queryParentById" resultMap="SysMenusMap">
         select
-          id, name, url, type, sort, note, parentId, permission, createdTime, modifiedTime, createdUser, modifiedUser
+          COUNT(*)
         from dbsys.sys_menus
-        where id = #{id}
+        where parentId = #{id}
     </select>
 
     <!--查询指定行数据-->
@@ -78,7 +78,7 @@
         </where>
     </select>
     <!--查询所有-->
-    <select id="doFindObjects" resultType="com.cj.entity.SysMenus">
+    <select id="doFindObjects" resultType="java.util.Map">
         <!-- 方案1
           select c.*,p.name parentName
           from sys_menus c left join sys_menus p
@@ -93,17 +93,31 @@
         from sys_menus c
 
     </select>
+    <select id="findZtreeMenuNodes" resultType="com.cj.common.pojo.Node">
+        select id,name,parentId
+        from sys_menus
+    </select>
 
     <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    <!--useGeneratedKeys表示自增id-->
+    <insert id="insertObject" keyProperty="id" useGeneratedKeys="true">
         insert into dbsys.sys_menus(name, url, type, sort, note, parentId, permission, createdTime, modifiedTime, createdUser, modifiedUser)
         values (#{name}, #{url}, #{type}, #{sort}, #{note}, #{parentId}, #{permission}, #{createdTime}, #{modifiedTime}, #{createdUser}, #{modifiedUser})
     </insert>
 
+    <delete id="deleteRoleId">
+         delete from dbsys.sys_role_menus where menu_id = #{id};
+    </delete>
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from dbsys.sys_menus where id = #{id}
+        delete from dbsys.sys_menus
+        <where>
+            <if test="id!=null and id !=0">
+                and id = #{id}
+            </if>
+        </where>
+        or 1=2;
     </delete>
 
 </mapper>
